@@ -31,6 +31,14 @@ export default function App() {
     setTarefa('')
   }
 
+  function handleDelete(item) {
+    let filtroItem = list.filter((tarefa) => {
+      return (tarefa.item !== item)
+    })
+
+    setList(filtroItem)
+  }
+
   return (
     <View style={styles.container}>
      
@@ -52,7 +60,7 @@ export default function App() {
       <FlatList 
       data={list}
       keyExtractor={ (item) => item.key}
-      renderItem={ ({ item }) => <Tarefa data={item}/> }
+      renderItem={ ({ item }) => <Tarefa data={item} deleteItem={ () => handleDelete(item.item) } /> }
       style={styles.list}
       />
     </View>
