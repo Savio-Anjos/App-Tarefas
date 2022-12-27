@@ -14,25 +14,21 @@ import Tarefa from './src/Tarefa';
 
 export default function App() {
   const [tarefa, setTarefa] = useState('')
-  const [list, setList] = useState([
-    {
-      key: '1',
-      item: 'Comprar pão'
-    },
-
-    {
-      key: '2',
-      item: 'Estudar React Native'
-    },
-
-    {
-      key: '3',
-      item: 'Pagar conta de luz'
-    }
-  ]);
+  const [list, setList] = useState([]);
 
   function handleAdd() {
-    alert(tarefa)
+    if(tarefa === '') {
+      return;
+    }
+
+    const dados = {
+      key: Date.now(),
+      item: tarefa
+    }
+
+    setList(oldArray => [dados, ...oldArray]);
+
+    setTarefa('')
   }
 
   return (
